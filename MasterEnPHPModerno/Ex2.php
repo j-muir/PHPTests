@@ -51,7 +51,7 @@ $remainder = $numerator % $denominator;
 echo $remainder;
 
 // Ejercicio 8: Precedencia de Operadores
-// Completa el código para calcular el resultado de 2 + 3 * 4 y asignarlo a $resultadoPrecedencia.
+// Completa el código para calcular el resultado de 2 + 3 * 4 y asignarlo a $resultadoPrecedencia. //
 $resultadoPrecedencia = 2 + 3 * 4;
 echo $resultadoPrecedencia;
 ?>
