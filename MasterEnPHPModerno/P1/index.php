@@ -111,42 +111,30 @@
             
                     <div class="col-sm-4">
                         <label for="desde" name="desde" class="form-label">Desde :</label>
-                            <select class="form-select">    
-                                    <option value="">--Selecciona un valor--</option>                       
-                                    <option value="Milimetro" value="<?php if(isset($_POST['desde']) && $_POST['desde'] == 'Milimetro') { echo 'selected'; }; ?>">Milímetro</option>
-
-                                    <option value="Centimetro" value="<?php if(isset($_POST['desde']) && $_POST['desde'] == 'Centimetro') { echo 'selected'; }; ?>">Centímetro</option>
-                                    
-                                    <option value="Decimetro" value="<?php if(isset($_POST['desde']) && $_POST['desde'] == 'Decimetro') { echo 'selected'; }; ?>">Decímetro</option>
-                                    
-                                    <option value="Metro" value="<?php if(isset($_POST['desde']) && $_POST['desde'] == 'Metro') { echo 'selected'; }; ?>">Metro</option>
-                                    
-                                    <option value="Decametro" value="<?php if(isset($_POST['desde']) && $_POST['desde'] == 'Decametro') { echo 'selected'; }; ?>">Decámetro</option>
-                                    
-                                    <option value="Hectometro" value="<?php if(isset($_POST['desde']) && $_POST['desde'] == 'Hectometro') { echo 'selected'; }; ?>">Hectómetro</option>
-                                    
-                                    <option value="Kilometro" value="<?php if(isset($_POST['desde']) && $_POST['desde'] == 'Kilometro') { echo 'selected'; }; ?>">Kilómetro</option>
-                            </select>
+                        <select class="form-select" name="desde">    
+                            <option value="">--Selecciona un valor--</option>                       
+                            <option value="Milimetro" <?php if(isset($_POST['desde']) && $_POST['desde'] == 'Milimetro') echo 'selected'; ?>>Milímetro</option>
+                            <option value="Centimetro" <?php if(isset($_POST['desde']) && $_POST['desde'] == 'Centimetro') echo 'selected'; ?>>Centímetro</option>
+                            <option value="Decimetro" <?php if(isset($_POST['desde']) && $_POST['desde'] == 'Decimetro') echo 'selected'; ?>>Decímetro</option>
+                            <option value="Metro" <?php if(isset($_POST['desde']) && $_POST['desde'] == 'Metro') echo 'selected'; ?>>Metro</option>
+                            <option value="Decametro" <?php if(isset($_POST['desde']) && $_POST['desde'] == 'Decametro') echo 'selected'; ?>>Decámetro</option>
+                            <option value="Hectometro" <?php if(isset($_POST['desde']) && $_POST['desde'] == 'Hectometro') echo 'selected'; ?>>Hectómetro</option>
+                            <option value="Kilometro" <?php if(isset($_POST['desde']) && $_POST['desde'] == 'Kilometro') echo 'selected'; ?>>Kilómetro</option>
+                        </select>
                     </div>
 
                     <div class="col-sm-4">
                         <label for="hasta" name="hasta" class="form-label">Hasta :</label>
-                            <select class="form-select">
-                                <option value="">--Selecciona un valor--</option>  
-                                <option value="Milimetro" value="<?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Milimetro') { echo 'selected'; }; ?>">Milímetro</option>
-
-                                <option value="Centimetro" value="<?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Centimetro') { echo 'selected'; }; ?>">Centímetro</option>
-
-                                <option value="Decimetro" value="<?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Decimetro') { echo 'selected'; }; ?>">Decímetro</option>
-
-                                <option value="Metro" value="<?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Metro') { echo 'selected'; }; ?>">Metro</option>
-
-                                <option value="Decametro" value="<?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Decametro') { echo 'selected'; }; ?>">Decámetro</option>
-
-                                <option value="Hectometro" value="<?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Hectometro') { echo 'selected'; }; ?>">Hectómetro</option>
-
-                                <option value="Kilometro" value="<?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Kilometro') { echo 'selected'; }; ?>">Kilómetro</option>
-                            </select>              
+                        <select class="form-select" name="hasta">    
+                            <option value="">--Selecciona un valor--</option>                       
+                            <option value="Milimetro" <?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Milimetro') echo 'selected'; ?>>Milímetro</option>
+                            <option value="Centimetro" <?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Centimetro') echo 'selected'; ?>>Centímetro</option>
+                            <option value="Decimetro" <?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Decimetro') echo 'selected'; ?>>Decímetro</option>
+                            <option value="Metro" <?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Metro') echo 'selected'; ?>>Metro</option>
+                            <option value="Decametro" <?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Decametro') echo 'selected'; ?>>Decámetro</option>
+                            <option value="Hectometro" <?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Hectometro') echo 'selected'; ?>>Hectómetro</option>
+                            <option value="Kilometro" <?php if(isset($_POST['hasta']) && $_POST['hasta'] == 'Kilometro') echo 'selected'; ?>>Kilómetro</option>
+                        </select>
                     </div>
             </div>  
 
