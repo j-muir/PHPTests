@@ -13,17 +13,17 @@ if(isset($_POST['crearRegistro'])){
     $time = date('h:i:s a', time());
 
     //Validar si los campos no estan vacios
-    if(!empty($nombre || $nombre == '' || $apellidos || $apellidos == '' || $telefono || $telefono = '' || $email || $email = '')){
+    if(empty($nombre) || empty($apellidos) || empty($telefono) || empty($email)){
         $error = "Algunos campos están vacíos.";
     }else{
-        $query = "INSERT INTO 'usuarios'('nombre', 'apellidos', 'telefono', 'email') VALUES ('$nombre', '$apellidos', '$telefono', '$email')";
+        $query = "INSERT INTO usuarios (nombre, apellidos, telefono, email) VALUES ('$nombre', '$apellidos', '$telefono', '$email')";
         
         if(!mysqli_query($con, $query)){
             die('Error: '. mysqli_error($con));
             $error = "No se pudo crear el registro.";
         }else {
             $mensaje = "Registro creado correctamente.";
-            header('Location : index.php');
+            header('Location: index.php');
             exit();
         }
     }
@@ -58,7 +58,7 @@ if(isset($_POST['crearRegistro'])){
         <div class="row caja">
 
             <div class="col-sm-6 offset-3">
-            <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
                     <input type="text" class="form-control" name="nombre" placeholder="Ingresa el nombre">                    
