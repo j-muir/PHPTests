@@ -16,7 +16,7 @@ if(isset($_POST['crearRegistro'])){
     if(!empty($nombre || $nombre == '' || $apellidos || $apellidos == '' || $telefono || $telefono = '' || $email || $email = '')){
         $error = "Algunos campos están vacíos.";
     }else{
-        $query = "INSERT INTO usuarios(nombre, apellidos, telefono, email) VALUES ('$nombre', '$apellidos', '$telefono', '$email')";
+        $query = "INSERT INTO 'usuarios'('nombre', 'apellidos', 'telefono', 'email') VALUES ('$nombre', '$apellidos', '$telefono', '$email')";
         
         if(!mysqli_query($con, $query)){
             die('Error: '. mysqli_error($con));
