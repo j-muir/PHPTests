@@ -15,7 +15,7 @@ $usuario = mysqli_query($con, $query) or die(mysqli_error($con));
 $fila = mysqli_fetch_assoc($usuario);
 
 
-if(isset($_POST['crearRegistro'])){
+if(isset($_POST['editarRegistro'])){
     $nombre = mysqli_real_escape_string($con, $_POST['nombre']);
     $apellidos = mysqli_real_escape_string($con, $_POST['apellidos']);
     $telefono = mysqli_real_escape_string($con, $_POST['telefono']);
@@ -29,13 +29,13 @@ if(isset($_POST['crearRegistro'])){
     if(empty($nombre) || empty($apellidos) || empty($telefono) || empty($email)){
         $error = "Algunos campos están vacíos.";
     }else{
-        $query = "INSERT INTO usuarios (nombre, apellidos, telefono, email) VALUES ('$nombre', '$apellidos', '$telefono', '$email')";
+        $query = "UPDATE usuarios SET nombre='$nombre', apellidos='$apellidos', telefono='$telefono', email='$email' WHERE id='$idRegistro'";
         
         if(!mysqli_query($con, $query)){
             die('Error: '. mysqli_error($con));
-            $error = "No se pudo crear el registro.";
+            $error = "No se pudo actualizar el registro.";
         }else {
-            $mensaje = "Registro creado correctamente.";
+            $mensaje = "Registro editado correctamente.";
             header('Location: index.php');
             exit();
         }
