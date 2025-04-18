@@ -1,3 +1,33 @@
+<?php include 'conexion.php'; ?>
+
+<?php
+
+//Obtener el ID
+$idRegistro = $_GET['id'];
+
+//Seleccionar datos
+
+$query = "SELECT * FROM usuarios WHERE id='".$idRegistro."'";
+$usuario = mysqli_query($con, $query) or die(mysqli_error($con));
+
+//Volcado de datos
+
+$fila = mysqli_fetch_assoc($usuario);
+
+if(isset($_POST['borrarRegistro'])){
+        $query = "DELETE FROM usuarios WHERE id='$idRegistro'";
+        
+        if(!mysqli_query($con, $query)){
+            die('Error: '. mysqli_error($con));
+            $error = "No se pudo borrar el registro.";
+        }else {
+            $mensaje = "Registro borrado correctamente.";
+            header('Location: index.php');
+            exit();
+        }
+    };
+
+?>
 <!doctype html>
 <html lang="es">
   <head>
@@ -24,29 +54,32 @@
 
 
         <div class="row caja">
+
+       
+
             <div class="col-sm-6 offset-3">
-            <form method="POST">
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] . '?id=' . $idRegistro; ?>">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Ingresa el nombre" readonly>                    
+                    <input type="text" class="form-control" name="nombre" placeholder="Ingresa el nombre" value="<?php echo $fila['nombre'] ?>" readonly>                    
                 </div>
                 
                 <div class="mb-3">
                     <label for="apellidos" class="form-label">Apellidos:</label>
-                    <input type="text" class="form-control" name="apellidos" placeholder="Ingresa los apellidos" readonly>                    
+                    <input type="text" class="form-control" name="apellidos" placeholder="Ingresa los apellidos" value="<?php echo $fila['apellidos'] ?>" readonly>                    
                 </div>
 
                 <div class="mb-3">
                     <label for="telefono" class="form-label">Telefono:</label>
-                    <input type="number" class="form-control" name="telefono" placeholder="Ingresa el teléfono" readonly>                    
+                    <input type="number" class="form-control" name="telefono" placeholder="Ingresa el teléfono" value="<?php echo $fila['telefono'] ?>" readonly>                    
                 </div>
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email" placeholder="Ingresa el email" readonly>                    
+                    <input type="email" class="form-control" name="email" placeholder="Ingresa el email" value="<?php echo $fila['email'] ?>" readonly>                    
                 </div>
               
-                <button type="submit" class="btn btn-primary w-100" name="borrarRegistro">Borrar Registro</button>
+                <input type="submit" class="btn btn-danger w-100" name="borrarRegistro" value="Borrar Registro">
 
                 </form>
             </div>
