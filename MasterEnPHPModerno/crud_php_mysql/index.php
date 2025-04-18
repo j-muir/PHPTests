@@ -5,8 +5,6 @@
     $query = "SELECT * FROM usuarios ORDER BY id DESC";
     $usuarios = mysqli_query($con, $query);
 
-
-
 ?>
 
 <!doctype html>
@@ -28,6 +26,11 @@
     <p class="text-center">Aprende a realizar las 4 operaciones básicas entre PHP y una base de datos, en este caso MYSQL: CRUD(Create, Read, Update, Delete)</p>
 
     <div class="container">
+    
+    <?php if(isset($_GET['mensaje'])) : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert"><strong><?php echo $_GET['mensaje'];?></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+    <?php endif; ?>
 
     <div class="row">
             <div class="col-sm-4 offset-8">

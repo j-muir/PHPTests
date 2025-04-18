@@ -22,7 +22,7 @@ if(isset($_POST['borrarRegistro'])){
             $error = "No se pudo borrar el registro.";
         }else {
             $mensaje = "Registro borrado correctamente.";
-            header('Location: index.php');
+            header('Location: index.php?mensaje='.urlencode($mensaje));
             exit();
         }
     };

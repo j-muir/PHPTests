@@ -23,7 +23,7 @@ if(isset($_POST['crearRegistro'])){
             $error = "No se pudo crear el registro.";
         }else {
             $mensaje = "Registro creado correctamente.";
-            header('Location: index.php');
+            header('Location: index.php?mensaje='.urlencode($mensaje));
             exit();
         }
     }
@@ -56,6 +56,10 @@ if(isset($_POST['crearRegistro'])){
     </div>   
 
         <div class="row caja">
+
+        <?php if(isset($error)) : ?>
+            <h4 class="bg-danger text-white"><?php echo $error;?></h4>
+        <?php endif; ?>
 
             <div class="col-sm-6 offset-3">
             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
