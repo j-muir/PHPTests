@@ -73,7 +73,7 @@ if(isset($_POST['editarRegistro'])){
        
 
             <div class="col-sm-6 offset-3">
-            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] . '?id=' . $idRegistro; ?>">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
                     <input type="text" class="form-control" name="nombre" placeholder="Ingresa el nombre" value="<?php echo $fila['nombre'] ?>">                    
