@@ -1,3 +1,14 @@
+<?php include 'conexion.php'; ?>
+
+<?php
+    //Crear y seleccionar query
+    $query = "SELECT * FROM usuarios ORDER BY id DESC";
+    $usuarios = mysqli_query($con, $query);
+
+
+
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -39,19 +50,21 @@
                     </thead>
                     <tbody>
 
-                    <tr>
-                            <td>ID</td>
-                            <td>NOMBRE</td>
-                            <td></td>
-                            <td>APELLIDOS</td>
-                            <td>EMAIL</td>
+                    <?php while($fila = mysqli_fetch_assoc($usuarios)) : ?>
+
+                        <tr>
+                            <td><?php echo $fila['id']; ?></td>
+                            <td><?php echo $fila['nombre']; ?></td>
+                            <td><?php echo $fila['apellidos']; ?></td>
+                            <td><?php echo $fila['telefono']; ?></td>
+                            <td><?php echo $fila['email']; ?></td>
                             <td>
                             <a href="editar.php" class="btn btn-primary"> Editar</a>
                             <a href="borrar.php" class="btn btn-danger"> Borrar</a>
                             </td>
                         </tr> 
 
-                    
+                    <?php endwhile; ?>
 
                     </tbody>
                 </table>

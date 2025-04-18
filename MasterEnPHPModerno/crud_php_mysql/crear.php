@@ -1,3 +1,36 @@
+<?php include 'conexion.php' ?>
+
+<?php
+
+if(isset($_POST['crearRegistro'])){
+    $nombre = mysqli_real_escape_string($con, $_POST['nombre']);
+    $apellidos = mysqli_real_escape_string($con, $_POST['apellidos']);
+    $telefono = mysqli_real_escape_string($con, $_POST['telefono']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+
+    //Configurar tiempo y zona horaria
+    date_default_timezone_set('Europe/Paris');
+    $time = date('h:i:s a', time());
+
+    //Validar si los campos no estan vacios
+    if(!empty($nombre || $nombre == '' || $apellidos || $apellidos == '' || $telefono || $telefono = '' || $email || $email = '')){
+        $error = "Algunos campos están vacíos.";
+    }else{
+        $query = "INSERT INTO usuarios(nombre, apellidos, telefono, email) VALUES ('$nombre', '$apellidos', '$telefono', '$email')";
+        
+        if(!mysqli_query($con, $query)){
+            die('Error: '. mysqli_error($con));
+            $error = "No se pudo crear el registro.";
+        }else {
+            $mensaje = "Registro creado correctamente.";
+            header('Location : index.php');
+            exit();
+        }
+    }
+};
+
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -25,7 +58,7 @@
         <div class="row caja">
 
             <div class="col-sm-6 offset-3">
-            <form method="POST">
+            <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
                     <input type="text" class="form-control" name="nombre" placeholder="Ingresa el nombre">                    
