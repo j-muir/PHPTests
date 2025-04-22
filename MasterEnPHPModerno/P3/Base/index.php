@@ -33,6 +33,11 @@
             </div>
             <div class="row">                
                 <div class="col-sm-6">
+                <div class="mb-3">
+                        <label for="cedula" class="form-label">Cédula (*):</label>
+                        <input type="text" name="cedula" class="form-control" id="cedula" placeholder="Ingresa tu # de cédula">
+                    </div>
+
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre (*):</label>
                         <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
