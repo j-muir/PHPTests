@@ -14,7 +14,7 @@ if(isset($_POST["btnRegistrarse"])){
     $cedula = $_POST['cedula'];
     $nombre = $_POST['nombre'];
     $telefono = $_POST['telefono'];
-    $email = $_POST['cedemailula'];
+    $email = $_POST['email'];
     $direccion = $_POST['direccion'];
     $departamento = $_POST['departamento'];
     $ciudad = $_POST['ciudad'];
