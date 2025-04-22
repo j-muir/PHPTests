@@ -22,7 +22,7 @@ if(isset($_POST["btnRegistrarse"])){
     //Validar campos
     if(empty($cedula || $nombre || $telefono || $email || $direccion || $departamento || $ciudad)){
         $error = "Error, algunos campos obligatorios están vacíos.";
-        header('Location: index.php?error=' . $urlencode($error));
+        header('Location: index.php?error=' . urlencode($error));
     }else{
         //Validar si ya existe la cédula
         $query = "SELECT * FROM registros WHERE cedula = :cedula";
@@ -34,7 +34,7 @@ if(isset($_POST["btnRegistrarse"])){
 
         if ($registroCedula) {
             $error = "Error, el número de cédula se encuentra ya registrado.";
-            header('Location: index.php?error=' . $urlencode($error));
+            header('Location: index.php?error=' . urlencode($error));
         }else{
             //Si la cédula no existe
             $query = "INSERT INTO registros(cedula, nombre, telefono, email, direccion, departamento, ciudad) VALUES (:cedula, :nombre, :telefono, :email, :direccion, :departamento, :ciudad)";
@@ -54,11 +54,11 @@ if(isset($_POST["btnRegistrarse"])){
                 //Validar creación y obtener el último ID (sería el código)
                 $codigoID = $baseDatos->lastInsertId();
                 $mensaje = "Registro creado correctamente";
-                header('Location: index.php?mensaje=' . $urlencode($mensaje) . '&codigo=' . urlencode($codigoID));
+                header('Location: index.php?mensaje=' . urlencode($mensaje) . '&codigo=' . urlencode($codigoID));
                 exit();
             } else {
                 $error = "Error, no se pudo crear el registro.";
-                header('Location: index.php?error=' . $urlencode($error));
+                header('Location: index.php?error=' . urlencode($error));
                 exit();
             };
         };
