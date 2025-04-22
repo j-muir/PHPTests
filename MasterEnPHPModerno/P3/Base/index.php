@@ -1,3 +1,9 @@
+<?
+
+
+
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -15,14 +21,26 @@
   <body>
     
     <div class="container caja">
-    <div class="row mt-4">
+    <div class="row mt-4 mx-4">
         <h1 class="text-center">Regístrate y redime el código en un punto de venta</h1>
     </div>
 
     <div class="row mt-4">
-        <br />
-        <br />
-        <br />       
+        <!-- Mensaje exito -->
+         <?php if(isset($_GET["mensaje"]) && ($_GET["codigo"])) : ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong><?php echo $_GET["mensaje"] . "Tu código es : " . $_GET["codigo"]; ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+         <?php endif; ?>
+         
+         <!-- Mensaje error -->
+         <?php if(isset($_GET["error"])) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><?php echo $_GET["error"]; ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+         <?php endif; ?>
     </div>
     
         <form method="POST" action="procesar.php">

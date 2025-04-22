@@ -8,7 +8,7 @@
 
     //Definición de la tabla
 
-    $definicionTabla = "CREATE TABLE IF NOT EXISTS registros(
+    /*$definicionTabla = "CREATE TABLE IF NOT EXISTS registros(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         cedula TEXT NOT NULL,
         nombre TEXT NOT NULL,
@@ -21,6 +21,6 @@
     );";
 
     $resultado = $baseDatos->exec($definicionTabla);
-    echo "Tabla creada correctamente";
+    echo "Tabla creada correctamente";*/
 
 ?>
