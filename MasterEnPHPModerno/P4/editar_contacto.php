@@ -95,7 +95,9 @@
                 <select class="form-select" aria-label="Default select example" name="categoria">
                     <option value="">--Selecciona una Categoría--</option>
                     <?php foreach($categorias as $fila) : ?>
-                        <option value="<?php echo $fila->id; ?>" <?php if($contacto && $contacto->categoria == $fila->id){ echo "selected"; } ?>>
+                        <option value="<?php echo $fila->id; ?>">
+                            <?php echo isset($fila->nombre) ? htmlspecialchars($fila->nombre) : 'Categoría sin nombre'; ?>
+                        </option>
                     <?php endforeach; ?>             
                 </select>
             </div>
