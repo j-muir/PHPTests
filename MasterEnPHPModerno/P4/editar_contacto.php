@@ -72,7 +72,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 offset-3">
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form method="POST" action="editar_contacto.php?id=<?php echo $idContacto; ?>">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa el nombre" value="<?php if($contacto){ echo $contacto->nombre; }; ?>">               
@@ -95,7 +95,7 @@
                 <select class="form-select" aria-label="Default select example" name="categoria">
                     <option value="">--Selecciona una Categoría--</option>
                     <?php foreach($categorias as $fila) : ?>
-                        <option value="<?php echo $fila->id; ?>" <?php if($idCategoria == $fila->id){ echo "selected";}; ?>><?php echo $fila->nombre; ?></option>
+                        <option value="<?php echo $fila->id; ?>" <?php if($contacto && $contacto->categoria == $fila->id){ echo "selected"; } ?>>
                     <?php endforeach; ?>             
                 </select>
             </div>
