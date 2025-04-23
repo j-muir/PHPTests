@@ -2,7 +2,7 @@
 
 <?php
 
-    if($_POST["crearCategoria"]){
+    if(isset($_POST["crearCategoria"])){
         //Obtener valores
         $nombre = $_POST["nombre"];
 
