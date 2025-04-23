@@ -21,7 +21,8 @@
         //Validar si está vacío
         if(empty($nombre) || empty($apellidos) || empty($telefono) || empty($email) || empty($categoria)){
             $error = "Error, algunos campos obligatorios están vacíos.";
-            header('Location: crear_contacto.php?error=' . $error);
+            header('Location: crear_contacto.php?error=' . urlencode($error));
+            exit();
         }else{
             //Insersión de datos en bdd
     
