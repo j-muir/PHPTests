@@ -1,5 +1,20 @@
 <?php include("includes/header.php") ?>
 
+<?php
+
+    // Configurar Zona horara
+    date_default_timezone_set('Europe/Paris');
+
+    //Mostrar registros
+    $query = "SELECT * FROM contactos";
+    $stmt = $pdo->query($query);
+
+    $contactos = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    /*var_dump($categorias);*/
+
+    ?>
+
 <div class="row">
     <div class="col-sm-6">
         <h3>Lista de Contactos</h3>
@@ -23,150 +38,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php foreach($contactos as $fila) : ?>
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
+                        <td><?php echo $fila->id; ?></td>
+                        <td><?php echo $fila->nombre; ?></td>
+                        <td><?php echo $fila->apellidos; ?></td>
+                        <td><?php echo $fila->telefono; ?></td>
+                        <td><?php echo $fila->email; ?></td>
+                        <td><?php echo $fila->categoria; ?></td>
                         <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
+                            <a href="editar_contacto.php?id=<?php echo $fila->id; ?>" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
+                            <a href="borrar_contacto.php?id=<?php echo $fila->id; ?>" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>                                                    
                         </td>
                     </tr>
-                    <tr>
-                    <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>
-                            <a href="editar_contacto.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
-                            <a href="borrar_contacto.php" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>
-                        </td>
-                    </tr>                                          
+                <?php endforeach; ?>                                      
                 </tbody>       
             </table>
     </div>
