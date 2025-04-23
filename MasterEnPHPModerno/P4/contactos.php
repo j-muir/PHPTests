@@ -6,7 +6,7 @@
     date_default_timezone_set('Europe/Paris');
 
     //Mostrar registros
-    $query = "SELECT * FROM contactos";
+    $query = "SELECT cat.nombre AS nombrecategoria, con.id AS id, con.nombre AS nombre, con.apellidos AS apellidos, con.telefono AS telefono, con.email AS email, con.categoria AS categoria_id FROM categorias cat INNER JOIN contactos con ON con.categoria = cat.id";
     $stmt = $pdo->query($query);
 
     $contactos = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -45,7 +45,7 @@
                         <td><?php echo $fila->apellidos; ?></td>
                         <td><?php echo $fila->telefono; ?></td>
                         <td><?php echo $fila->email; ?></td>
-                        <td><?php echo $fila->categoria; ?></td>
+                        <td><?php echo $fila->nombrecategoria; ?></td>
                         <td>
                             <a href="editar_contacto.php?id=<?php echo $fila->id; ?>" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
                             <a href="borrar_contacto.php?id=<?php echo $fila->id; ?>" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>                                                    
