@@ -14,6 +14,39 @@
     $stmt->execute();
     $categoria = $stmt->fetch(PDO::FETCH_OBJ);
 
+    //Editar datos
+    if(isset($_POST["editarCategoria"])){
+        //Obtener valores
+        $nombre = $_POST["nombre"];
+
+        //Validar si está vacío
+        if(empty($nombre)){
+            $error = "Error, algunos campos obligatorios están vacíos.";
+            header('Location: editar_categoria.php?error=' . $error);
+        }else{
+            //Insersión de datos en bdd
+            $fechaActual = date("Y-m-d");
+            $query = "UPDATE categorias SET nombre = :nombre WHERE id = :id";
+
+            $stmt = $pdo->prepare($query);
+
+            $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+            $stmt->bindParam(":fecha_creacion", $fechaActual, PDO::PARAM_STR);
+
+            $resultado = $stmt->execute();
+
+            if($resultado){
+                $mensaje = "Categoría editada con éxito.";
+                header('Location: categorias.php?mensaje=' . $mensaje);
+                exit();
+            }else{
+                $error = "Error, no se pudo editar la categoría.";
+                header('Location: categorias.php?error=' . $error);
+                exit();
+            };
+        };
+    }
+
 ?>
 
     <div class="row">
