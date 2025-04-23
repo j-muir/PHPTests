@@ -39,7 +39,7 @@
             exit();
         }else{
             //Insersión de datos en bdd
-            $query = "UPDATE contactos SET nombre = :nombre, apellidos = :apellidos, telefono = :telefono, email = :email, categoria = :categoria) WHERE id = :id";
+            $query = "UPDATE contactos SET nombre = :nombre, apellidos = :apellidos, telefono = :telefono, email = :email, categoria = :categoria WHERE id = :id";
 
             $stmt = $pdo->prepare($query);
 
@@ -63,9 +63,6 @@
             };
         };
     }
-
-
-
 ?>
 
 <div class="row">
@@ -75,7 +72,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 offset-3">
-        <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa el nombre" value="<?php if($contacto){ echo $contacto->nombre; }; ?>">               
