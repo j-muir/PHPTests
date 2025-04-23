@@ -1,36 +1,24 @@
 <?php
    
-    /*//Configurar datos de acceso a la Base de datos
-    $host = "localhost";
-    $dbname = "admin_Psg";
-    $dbuser = "user_Psg";
-    $userpass = "2n1fh8_Q9";
-    
-    $dsn = "pgsql:host=$host;port=5432;dbname=$dbname;user=$dbuser;password=$userpass";
-    
-    try{
-     //Crear conexión a postgress
-     $conn = new PDO($dsn);
-    
-     //Mostgrar mensaje si la conexión es correcta
-     if($conn){
-      echo "Conectado a la base $dbname correctamente!"; 
-     echo "\n";
-     }
-    }catch (PDOException $e){
-     //Si hay error en la conexión mostrarlo
-     echo $e->getMessage();
-    }*/
+// Configuración de conexión
+$host = 'localhost';
+$port = '3306';
+$dbname = 'admin_';
+$username = 'dbadmin';
+$password = '3tI*a5s46';
 
-        //Connectar a Mysql
+// DSN (Data Source Name)
+$dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
 
-        $con = mysqli_connect("localhost:3306", "dbadmin", "3tI*a5s46", "admin_");
+try {
+    // Crear una instancia PDO
+    $pdo = new PDO($dsn, $username, $password);
 
-        //probar conexión
-        if(mysqli_connect_errno()){
-            echo "Fallo al conectarse a Mysql." . mysqli_connect_error();
-        }/*else {
-            echo "Connectado correctamente.";
-        }*/
+    // Configurar el modo de error a excepción
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // echo "Conectado correctamente.";
+} catch (PDOException $e) {
+    echo "Fallo al conectarse a MySQL: " . $e->getMessage();
+}
 ?>

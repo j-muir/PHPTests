@@ -1,5 +1,19 @@
 <?php include("includes/header.php") ?>
 
+<?php
+
+    // Configurar Zona horara
+    date_default_timezone_set('Europe/Paris');
+
+    //Mostrar registros
+    $query = "SELECT * FROM categorias";
+    $stmt = $pdo->query($query);
+
+    $categorias = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    var_dump($categorias);
+    ?>
+
 <div class="row">
     <div class="col-sm-6">
         <h3>Lista de Categorías</h3>
