@@ -47,7 +47,7 @@
                         <td><?php echo $fila->email; ?></td>
                         <td><?php echo $fila->nombrecategoria; ?></td>
                         <td>
-                            <a href="editar_contacto.php?id=<?php echo $fila->id; ?>" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
+                            <a href="editar_contacto.php?id=<?php echo $fila->id; ?>&idCategoria=<?php echo $fila->categoria_id; ?>" class="btn btn-warning"><i class="bi bi-pencil-fill"></i> Editar</a>
                             <a href="borrar_contacto.php?id=<?php echo $fila->id; ?>" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Borrar</a>                                                    
                         </td>
                     </tr>
