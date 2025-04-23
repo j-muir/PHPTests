@@ -19,7 +19,7 @@
         $categoria = $_POST["categoria"];
 
         //Validar si está vacío
-        if(empty($nombre || $apellidos || $telefono || $email || $categoria)){
+        if(empty($nombre) || empty($apellidos) || empty($telefono) || empty($email) || empty($categoria)){
             $error = "Error, algunos campos obligatorios están vacíos.";
             header('Location: crear_contacto.php?error=' . $error);
         }else{
@@ -58,7 +58,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 offset-3">
-        <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa el nombre">               
@@ -78,7 +78,7 @@
 
             <div class="mb-3">
                 <label for="email" class="form-label">Categoría:</label>
-                <select class="form-select" aria-label="Default select example" name="categorias">
+                <select class="form-select" aria-label="Default select example" name="categoria">
                     <option value="">--Selecciona una Categoría--</option>
                     <?php foreach($categorias as $fila) : ?>
                         <option value="<?php echo $fila->id; ?>"><?php echo $fila->nombre; ?></option>
