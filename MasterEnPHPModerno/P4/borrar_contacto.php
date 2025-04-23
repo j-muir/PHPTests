@@ -12,6 +12,21 @@
     $stmt->bindParam(":id", $idContacto, PDO::PARAM_INT);
     $stmt->execute();
     $contacto = $stmt->fetch(PDO::FETCH_OBJ);
+
+// Obtener el nombre de la categoría actual del contacto
+    $categoriaNombre = '';
+
+    if ($contacto) {
+        $query = "SELECT nombre FROM categorias WHERE id = :idCategoria";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':idCategoria', $contacto->categoria, PDO::PARAM_INT);
+        $stmt->execute();
+        $categoria = $stmt->fetch(PDO::FETCH_OBJ);
+
+        if ($categoria) {
+            $categoriaNombre = $categoria->nombre;
+        }
+    }
     
 //Edicion de Datos
     if(isset($_POST["borrarContacto"])){
@@ -43,7 +58,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 offset-3">
-        <form method="POST" action="editar_contacto.php?id=<?php echo $idContacto; ?>">
+        <form method="POST" action="borrar_contacto.php?id=<?php echo $idContacto; ?>">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa el nombre" value="<?php if($contacto){ echo $contacto->nombre; }; ?>" readonly>               
@@ -62,18 +77,11 @@
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label">Categoría:</label>
-                <select class="form-select" aria-label="Default select example" name="categoria">
-                    <option value="">--Selecciona una Categoría--</option>
-                    <?php foreach($categorias as $fila) : ?>
-                        <option value="<?php echo $fila->id; ?>">
-                            <?php echo isset($fila->nombre) ? htmlspecialchars($fila->nombre) : 'Categoría sin nombre'; ?>
-                        </option>
-                    <?php endforeach; ?>             
-                </select>
+                <label class="form-label">Categoría:</label>
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($categoriaNombre); ?>" readonly>
             </div>
             <br />
-            <button type="submit" name="borrarContacto" class="btn btn-danger w-100"><i class="bi bi-person-bounding-box"></i> Editar Contacto</button>
+            <button type="submit" name="borrarContacto" class="btn btn-danger w-100"><i class="bi bi-person-bounding-box"></i> Borrar Contacto</button>
             </form>
         </div>
     </div>
