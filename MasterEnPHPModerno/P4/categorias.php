@@ -16,6 +16,16 @@
     ?>
 
 <div class="row">
+    <div class="col-sm-12">
+        <?php if(isset($_GET['mensaje'])) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?php echo $_GET['mensaje']; ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+    </div>    
+</div>
+<div class="row">
     <div class="col-sm-6">
         <h3>Lista de Categorías</h3>
     </div> 
