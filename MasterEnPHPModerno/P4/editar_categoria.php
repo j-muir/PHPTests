@@ -31,7 +31,7 @@
             $stmt = $pdo->prepare($query);
 
             $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
-            $stmt->bindParam(":fecha_creacion", $fechaActual, PDO::PARAM_STR);
+            $stmt->bindParam(":id", $idCategoria, PDO::PARAM_INT);
 
             $resultado = $stmt->execute();
 
