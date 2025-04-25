@@ -1,5 +1,44 @@
 <?php include "includes/header.php" ?>
 
+<?php
+
+  if(isset($_POST["crearEmpleado"])){
+
+    $cedula = $_POST["cedula"];
+    $email = $_POST["email"];
+    $nombre = $_POST["nombre"];
+    $esAdmin = $_POST["es_admin"];
+
+    $query = "SELECT * FROM empleado WHERE cedula = :cedula";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":cedula", $cedula);
+    $resultado = $stmt->execute();
+
+    $registroCedula = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if($registroCedula){
+        $error = "Error, el número de cédula ya se encuenta registrado.";
+    }else{
+        $query = "INSERT INTO empleado (cedula, email, nombre, es_admin) VALUES (:cedula, :email, :nombre, :es_admin)";
+
+        $stmt = $pdo->prepare($query);
+
+        $stmt->bindParam(":cedula", $cedula, PDO::PARAM_STR);
+        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+        $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(":es_admin", $esAdmin, PDO::PARAM_INT);
+
+        $resultado = $stmt->execute();
+
+        if($resultado){
+            $mensaje = "Empleado creado con éxito.";
+        }else{
+            $error = "Error, no se pudo crear el empleado.";
+            };
+        };
+    };
+
+?>
 
               <div class="card-header">               
                 <div class="row">
