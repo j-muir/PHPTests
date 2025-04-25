@@ -1,5 +1,17 @@
 <?php include "includes/header.php" ?>
 
+<?php
+
+//Configurar zona horaria
+  date_default_timezone_set('Europe/Paris');
+
+//Mostrar registros
+  $query = "SELECT * FROM empleado";
+  $stmt = $pdo->query($query);
+  $usuarios = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+?>
+
               <div class="card-header">               
                 <div class="row">
                   <div class="col-md-9">
@@ -23,15 +35,15 @@
                   </tr>
                   </thead>
                   <tbody>
-                
-                   <tr>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>                          
-                    </tr> 
-                         
+                  <?php foreach($usuarios as $fila) : ?> 
+                      <tr>
+                          <td><?php echo $fila->id; ?></td>
+                          <td><?php echo $fila->cedula; ?></td>
+                          <td><?php echo $fila->nombre; ?></td>
+                          <td><?php echo $fila->email; ?></td>
+                          <td><?php echo $fila->es_admin; ?></td>                      
+                      </tr>
+                   <?php endforeach; ?>   
                   </tbody>                  
                 </table>
               </div>
