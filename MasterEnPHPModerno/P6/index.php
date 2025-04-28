@@ -15,11 +15,12 @@ session_start();
     $pass = md5($_POST['password']);
 
     if(!empty($email) && $email != "" && !empty($pass) && $pass != ""){
-      $query = "SELECT id, cedula, email, nombre, es_admin, password FROM empleado WHERE email = :email AND password = :password AND es_admin = :es_admin";
+      $query = "SELECT id, cedula, email, nombre, es_admin, password FROM empleado WHERE email = :email AND password = :password AND es_admin = 1";
+      
       $stmt = $pdo->prepare($query);
       $stmt->bindParam(":email", $email, PDO::PARAM_STR);
       $stmt->bindParam(":password", $pass, PDO::PARAM_STR);
-      $stmt->bindParam(":es_admin", $pass, PDO::PARAM_INT);
+
       $resultado = $stmt->execute();
 
       $registro = $stmt->fetch(PDO::FETCH_ASSOC);
