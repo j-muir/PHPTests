@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+if(!$_SESSION['activo']){
+  header("Location: index.php");
+};
+
 include_once("conexion.php");
 
 ?>
@@ -103,7 +109,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Lista Usuarios      
               </p>
             </a>
-          </li>         
+          </li>
+          <li class="nav-item">
+            <a href="salir.php" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Salir      
+              </p>
+            </a>
+          </li>                  
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
