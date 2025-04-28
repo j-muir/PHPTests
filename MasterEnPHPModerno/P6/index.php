@@ -15,7 +15,7 @@ session_start();
     $pass = md5($_POST['password']);
 
     if(!empty($email) && $email != "" && !empty($pass) && $pass != ""){
-      $query = "SELECT id, cedula, email, nombre, es_admin, password FROM empleados WHERE email = :email AND password = :password AND es_admin = :es_admin";
+      $query = "SELECT id, cedula, email, nombre, es_admin, password FROM empleado WHERE email = :email AND password = :password AND es_admin = :es_admin";
       $stmt = $pdo->prepare($query);
       $stmt->bindParam(":email", $email, PDO::PARAM_STR);
       $stmt->bindParam(":password", $pass, PDO::PARAM_STR);
@@ -33,9 +33,9 @@ session_start();
         $_SESSION['email'] = $registro['email'];
         header("Location: panel.php");
       };
+    }else{
+      $error = "Error, algunos campos están vacíos.";
     };
-  }else{
-    $error = "Error, algunos campos están vacíos.";
   };
 ?>
 
