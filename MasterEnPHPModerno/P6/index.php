@@ -1,3 +1,44 @@
+<?php
+
+session_start();
+
+  //Validar si la sesión está activa
+  if(!empty($_SESSION['activo'])){
+    header("Location: panel.php");
+  };
+
+  //incluimos la conexión
+  include_once("conexion.php");
+
+  if(isset($_POST['ingresar'])){
+    $email = $_POST['email'];
+    $pass = md5($_POST['password']);
+
+    if(!empty($email) && $email != "" && !empty($pass) && $pass != ""){
+      $query = "SELECT id, cedula, email, nombre, es_admin, password FROM empleados WHERE email = :email AND password = :password AND es_admin = :es_admin";
+      $stmt = $pdo->prepare($query);
+      $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+      $stmt->bindParam(":password", $pass, PDO::PARAM_STR);
+      $stmt->bindParam(":es_admin", $pass, PDO::PARAM_INT);
+      $resultado = $stmt->execute();
+
+      $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if(!$registro){
+        $error = "Error, acceso inválido";
+      }else{
+        $_SESSION['activo'] = true;
+        $_SESSION['cedula'] = $registro['cedula'];
+        $_SESSION['nombre'] = $registro['nombre'];
+        $_SESSION['email'] = $registro['email'];
+        header("Location: panel.php");
+      };
+    };
+  }else{
+    $error = "Error, algunos campos están vacíos.";
+  };
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -46,7 +87,7 @@
 
   <div class="login-box">
   <div class="login-logo">
-    <img src="dist/img/login.png" class="img-fluid" width="200">
+    <!--<img src="dist/img/login.png" class="img-fluid" width="200">-->
   </div>
   <!-- /.login-logo -->
   <div class="card">
