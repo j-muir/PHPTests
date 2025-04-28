@@ -6,6 +6,13 @@ if(!$_SESSION['activo']){
   header("Location: index.php");
 };
 
+  //Obtener variables de sesión
+  $cedula = $_SESSION['cedula'];
+  $nombre = $_SESSION['nombre'];
+  $email = $_SESSION['email'];
+
+
+
 include_once("conexion.php");
 
 ?>
@@ -76,7 +83,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="dist/img/images.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <p class="text-white">Alexander Pierce</p>
+          <p class="text-white"><?php echo $cedula; ?></p>
+          <p class="text-white"><?php echo $nombre; ?></p>
+          <p class="text-white"><?php echo $email; ?></p>
         </div>
       </div>
 
