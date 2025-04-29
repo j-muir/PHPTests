@@ -52,10 +52,10 @@ $remplacements = [
     "{(PAYS)}" => $devis["pays"] ?? '',
     "{(DATE_VISITE)}" => $devis["date_visite"] ?? '',
     "{(HEURE_VISITE)}" => $devis["heure_visite"] ?? '',
-    "{(PMR)}" => $devis["pmr"] ?? '',
+    "{(PMR)}" => $pmr,
     "{(TLF_RESP)}" => $devis["tlf_resp"] ?? '',
     "{(MAIL_RESP)}" => $devis["mail_resp"] ?? '',
-    "{(MODE)}" => $devis["mode_payment"] ?? '',
+    "{(MODE)}" => $mode_payment,
 ];
 
 // Generar datos QR
@@ -85,12 +85,28 @@ $bonaccord  = remplacerVariables(file_get_contents("bonaccord.txt"), $remplaceme
 $contenu    = remplacerVariables(file_get_contents("lesdevis.txt"), $remplacements);
 $contenu2   = remplacerVariables(file_get_contents("lesdevis2.txt"), $remplacements);
 
-// Generar tabla dinámica (10 líneas como ejemplo)
+// Recuperar productos desde la tabla boutique
+$stmtProduits = $pdo->query("SELECT id_codeproduit, nom_produit, prix_ht FROM boutique");
+$produits = $stmtProduits->fetchAll(PDO::FETCH_ASSOC);
+
+// Generar tabla dinámica con datos reales y cantidad fija
 $tableRows = '';
-for ($i = 0; $i < 10; $i++) {
-    $classe = ($i % 2 === 0) ? "ligne-paire" : "ligne-impaire";
-    $ligne = str_replace("{(CODE)}", $i, $lignes);
-    $ligne = str_replace("{(CLASS)}", $classe, $ligne);
+$qte = 5;
+
+foreach ($produits as $index => $produit) {
+    $classe = ($index % 2 === 0) ? "ligne-paire" : "ligne-impaire";
+
+    $code = htmlspecialchars($produit['id_codeproduit']);
+    $description = htmlspecialchars($produit['nom_produit']);
+    $puht = number_format((float)$produit['prix_ht'], 2, ',', ' ');
+    $mtht = number_format($produit['prix_ht'] * $qte, 2, ',', ' ');
+
+    $ligne = str_replace(
+        ["{(CLASS)}", "{(CODE)}", "{(DESCRIPTION)}", "{(QTE)}", "{(PUHT)}", "{(MTHT)}"],
+        [$classe, $code, $description, $qte, $puht, $mtht],
+        $lignes
+    );
+
     $tableRows .= $ligne;
 }
 
