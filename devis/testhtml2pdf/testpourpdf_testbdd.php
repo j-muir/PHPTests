@@ -86,18 +86,22 @@ $contenu    = remplacerVariables(file_get_contents("lesdevis.txt"), $remplacemen
 $contenu2   = remplacerVariables(file_get_contents("lesdevis2.txt"), $remplacements);
 
 // Recuperar productos desde la tabla boutique
-$stmtProduits = $pdo->query("SELECT id_codeproduit, nom_produit, prix_ht FROM boutique");
-$produits = $stmtProduits->fetchAll(PDO::FETCH_ASSOC);
+    $stmtLignes = $pdo->prepare("
+        SELECT b.id_codeproduit, b.nom_produit, b.prix_ht, dl.quantite
+        FROM devis_lignes dl
+        JOIN boutique b ON dl.code_produit = b.id_codeproduit
+        WHERE dl.devis_id = :devis_id
+    ");
+    $stmtLignes->execute(['devis_id' => $numDevis]);
+    $produits = $stmtLignes->fetchAll(PDO::FETCH_ASSOC);
 
 // Generar tabla dinámica con datos reales y cantidad fija
 $tableRows = '';
-$qte = 5;
-
 foreach ($produits as $index => $produit) {
     $classe = ($index % 2 === 0) ? "ligne-paire" : "ligne-impaire";
-
     $code = htmlspecialchars($produit['id_codeproduit']);
     $description = htmlspecialchars($produit['nom_produit']);
+    $qte = (int)$produit['quantite'];
     $puht = number_format((float)$produit['prix_ht'], 2, ',', ' ');
     $mtht = number_format($produit['prix_ht'] * $qte, 2, ',', ' ');
 
