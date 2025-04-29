@@ -9,7 +9,7 @@
             <col width="120">
         </colgroup>
     <tr>
-        <td><img src="./loisirtradition.jpg" width="100" /></td>
+        <td><img src="https://ltf02.fr/wp-content/uploads/thegem-logos/logo_40dd7b83c69bf0dc5c37a2885d5043b5_1x.png" width="100" /></td>
         <td>&nbsp;</td>
         <td style="text-align:center">
             <strong>ASSOCIATION LOISIRS ET TRADITIONS DE FRANCE</strong><br>
