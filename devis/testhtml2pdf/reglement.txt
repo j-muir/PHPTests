@@ -1,0 +1,48 @@
+<style>
+
+.col-pay {
+    text-align: left;
+    font-size: 12px;
+}
+
+.col-donnes {
+    text-align: left;
+    font-size: 12px;
+}
+
+.col-acompte-droite {
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.col-acompte-gauche {
+    text-align: left;
+    font-size: 12px;
+}
+
+</style>
+
+<table cellspacing="0">
+    <colgroup>
+        <col width="730">
+    </colgroup>
+ <tbody>
+    <tr>
+        <td class="col-acompte-droite">Pour valider votre commande, un acompte de 40 % est nécessaire, et le solde devra être réglé lors de la visite. Le règlement différé est envisageable uniquement sur présentation d'un bon administratif.</td>
+    </tr>
+    <tr>
+        <td class="col-acompte-gauche"><b>Délais de réservation :</b> 1 mois avant la date de la visite.</td>
+    </tr>
+    <tr>
+        <td class="col-pay"><b>Mode de règlement : {(MODE)}</b> | IBAN : FR76 3002 7172 8000 0202 8870 167 | BIC : CMCIFRPP</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td class="col-donnes">Libellé : Acompte Devis {(NoDEVIS)}</td>
+        <td>&nbsp;</td>
+    </tr>    
+</tbody>
+</table>
+
+<br>

@@ -1,0 +1,6 @@
+<page_footer>
+         <p style="text-align: center; font-family: Arial; font-size: 10px; margin-top: 50px;">Siège social : 5 Rue de la Fère - 02100 SAINT-QUENTIN - 03 23 66 13 13
+         <br>
+         e-mail : accueil@ltf02.fr - SIRET : 438 633 547 00031 - APE 9499 Z</p>
+</page_footer>
+</page>

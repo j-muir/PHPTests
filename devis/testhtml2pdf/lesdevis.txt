@@ -1,0 +1,55 @@
+<style>
+
+.client {
+    background-color: lightgray;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+</style>
+
+<h3 style="color: gray; text-align: center;">Devis</h3>
+
+<table border="0" cellspacing="0" cols="2">
+    <colgroup>
+                   <col width="360">
+                   <col width="360">
+    </colgroup>
+    <tbody>
+                   <tr>
+                                   <td><b>Association Loisirs et Traditions de France</b></td>
+                                   <td style="font-weight: bold; font-size: 16px;">Nº {(NoDEVIS)}</td>
+                   </tr>
+                   <tr>
+                                   <td>5, rue de La Fère - 02100 Saint-Quentin</td>
+                                   <td style="font-weight: bold; font-size: 16px;">Date : {(DATE)}</td>  
+                   </tr>
+                    <tr>
+                                   <td><span style="font-size:10px;"><span>www.village-metiers-dantan.fr - accueil@ltf02.fr<br />
+                                   RNA W023000640 (21/6/1989) - SIRET 438 633 547 00031<br />
+                                   </span></span><br />
+                                   &nbsp;</td>
+                                   <td>&nbsp;</td>
+                   </tr>
+                   <tr>
+                                <td>&nbsp;</td>
+                                <td class="client"><br />
+                                <span><b><span><span><span style="font-size:14px;">{(NOM_GROUPE)}</span></span></span><br />
+                                <br />
+                                <span><span>À l'attention de : {(NOM_RESPONSABLE)}<br />
+                                {(ADRESSE)} - {(COMP_ADRESSE)}<br />
+                                {(CP)} {(VILLE)}<br />
+                                {(PAYS)}</span></span></b></span><br />
+                                &nbsp;</td>
+                   </tr>
+                   <tr>
+                                   <td>&nbsp;</td>
+                                   <td>&nbsp;</td>
+                   </tr>
+                    <tr>
+                                   <td>&nbsp;</td>
+                                   <td>&nbsp;</td>
+                   </tr>
+    </tbody>
+</table>

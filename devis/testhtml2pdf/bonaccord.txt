@@ -1,0 +1,50 @@
+<style>
+
+.col-accord {
+    border-collapse: collapse;
+    border: 1px dashed gray;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.col-termes {
+    border-collapse: collapse;
+    border-top: 1px white;
+    border-bottom: 1px dashed gray;
+    border-left: 1px dashed gray;
+    border-right: 1px dashed gray;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+</style>
+
+<table cellspacing="0">
+    <colgroup>
+        <col width="723">
+    </colgroup>
+ <tbody>
+    <tr>
+        <td class="col-accord">Merci de nous retourner  1 exemplaire avec date, mention "Bon pour accord", signature et cachet.</td>
+    </tr>
+</tbody>
+</table>
+
+<table cellspacing="0">
+    <colgroup>
+        <col width="350">
+        <col width="350">
+    </colgroup>
+<tbody>
+    <tr>
+        <td class="col-termes">Fait à _________________________ 
+        <br><br>le _________________________
+        <br><br><br></td>
+        <td class="col-termes">Signature et cachet<br><br><br><br></td>
+    </tr>
+</tbody>
+</table>

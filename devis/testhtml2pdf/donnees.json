@@ -1,0 +1,36 @@
+{
+    "devis": [
+      {
+        "NoDEVIS": "F00184",
+        "DATE": "24/02/2025",
+        "NOM_GROUPE": "Office de Tourisme  et des Congrès du Saint-Quentinois",
+        "NOM_RESPONSABLE": "Lowan Boudet",
+        "ADRESSE": "3 RUE EMILE ZOLA",
+        "COMP_ADRESSE": "",
+        "CP": "02100",
+        "VILLE": "STQ",
+        "PAYS": "France",
+        "DATE_VISITE": "22/04/2025",
+        "HEURE_VISITE": "14:30",
+        "PMR": "Sans",
+        "TLF_RESP": "03 23 06 30 80",
+        "MAIL_RESP": "lowan.boudet@saint-quentin.fr",
+        "MODE": "Virement"
+      },
+      {
+        "NoDEVIS": 2,
+        "DATE": "2025-03-01",
+        "NOM_GROUPE": "Groupe Beta",
+        "NOM_RESPONSABLE": "Marie Curie",
+        "ADRESSE": "456 Avenue des Sciences",
+        "COMP_ADRESSE": "",
+        "CP": 75005,
+        "VILLE": "Paris",
+        "PAYS": "France",
+        "HEURE": "10:30",
+        "PMR": "Sans",
+        "TLF_RESP": "+33 6 98 76 54 32",
+        "MAIL_RESP": "marie.curie@example.com"
+      }
+    ]
+  }

@@ -1,0 +1,44 @@
+<style>
+
+table {
+    border-collapse: collapse;
+}
+
+.col-st {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+.col-st-prix {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: right;
+}
+
+.col-vide {
+    border-top: 1px solid black;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+</style>
+
+<table>
+    <colgroup>
+        <col width="536">
+        <col width="72">
+        <col width="72">
+    </colgroup>
+ <tbody>
+    <tr>
+        <td class="col-vide">Ces tarifs sont maintenus pendant un mois à compter de la date d'émission du devis.</td>
+        <td class="col-st"><b>Sous-total</b></td>
+        <td class="col-st-prix">0000,00 €</td>
+    </tr>    
+</tbody>
+</table>
+<br>

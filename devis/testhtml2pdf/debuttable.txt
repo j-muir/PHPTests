@@ -1,0 +1,31 @@
+<style>
+
+.deb-table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+</style>
+
+<table cellspacing="0">
+    <colgroup>
+        <col width="50">
+        <col width="390">
+        <col width="50">
+        <col width="72">
+        <col width="72">
+    </colgroup>
+ <tbody>
+    <tr>
+        <td class="deb-table">Code</td>
+        <td class="deb-table">Description</td>
+        <td class="deb-table">Qté(s)</td>
+        <td class="deb-table">Prix Unit. HT</td>
+        <td class="deb-table">Montant HT</td>
+    </tr>
+</tbody>
+</table>

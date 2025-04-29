@@ -1,0 +1,51 @@
+<style>
+
+.col-objet {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.col-pmr {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.col-contact {
+    text-align: left;
+    font-size: 14px;
+    border-top: 1px white;
+    border-bottom: 1px white;
+    border-left: 1px white;
+    border-right: 1px black;
+}
+
+</style>
+
+<table cellspacing="0">
+    <colgroup>
+        <col width="723">
+    </colgroup>
+    <tbody>
+        <tr>
+            <td class="col-objet">Objet : Visite du {(DATE_VISITE)} / {(HEURE_VISITE)} Du Village des Metiers d'Antan et Musée Motobecane</td>
+        </tr>
+    </tbody>
+</table>
+<table border="0" cellspacing="0" cols="2">
+    <colgroup>
+                   <col width="535">
+                   <col width="200">
+    </colgroup>
+    <tbody>
+                <tr>
+                    <td class="col-contact"><b>Contact:</b> {(TLF_RESP)} | {(MAIL_RESP)}</td>
+                    <td class="col-pmr">{(PMR)} accueil PMR</td>
+                </tr>
+    </tbody>
+</table>
+<br>

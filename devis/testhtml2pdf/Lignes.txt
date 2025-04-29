@@ -1,0 +1,57 @@
+<style>
+
+.ligne-paire {
+    background-color: white;
+}
+
+.ligne-impaire {
+    background-color: lightgray;
+}
+
+.ligne-code {
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 3px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.ligne-descr {
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 3px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.ligne-prix {
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 3px;
+    text-align: right;
+    font-size: 12px;
+}
+
+</style>
+
+<table>
+    <colgroup>
+        <col width="58">
+        <col width="398">
+        <col width="58">
+        <col width="80">
+        <col width="80">
+    </colgroup>
+ <tbody>
+    <tr class="{(CLASS)}">
+        <td class="ligne-code">{(CODE)}</td>
+        <td class="ligne-descr">{(DESCRIPTION)}</td>
+        <td class="ligne-prix">{(QTE)}</td>
+        <td class="ligne-prix">{(PUHT)}</td>
+        <td class="ligne-prix">{(MTHT)}</td>
+    </tr>   
+</tbody>
+</table>

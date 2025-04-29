@@ -1,0 +1,23 @@
+<page backtop="20mm" backbottom="7mm"> 
+<page_header> 
+    <table>
+        <colgroup>
+            <col width="100">
+            <col width="75">
+            <col width="400">
+            <col width="60">
+            <col width="120">
+        </colgroup>
+    <tr>
+        <td><img src="./loisirtradition.jpg" width="100" /></td>
+        <td>&nbsp;</td>
+        <td style="text-align:center">
+            <strong>ASSOCIATION LOISIRS ET TRADITIONS DE FRANCE</strong><br>
+            5 rue de la Fère - 02100 Saint Quentin</td>
+        <td>&nbsp;</td>
+        <td><qrcode value="{(QRDATA)}" ec="L" style="width: 100px; background-color: white; color: black;"></qrcode></td>      
+    </tr>
+</table> 
+</page_header>
+
+
