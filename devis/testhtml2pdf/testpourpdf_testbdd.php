@@ -25,6 +25,20 @@ if (!$devis) {
     die("Numéro de devis introuvable.");
 }
 
+$pmrOptions = [
+    0 => "Sans",
+    1 => "Avec"
+];
+
+// Obtener el valor de pmr y convertirlo
+$pmr = isset($devis["pmr"]) ? $pmrOptions[$devis["pmr"]] : "Inconnu"; // "Inconnu" si no está presente
+
+$modePaymentOptions = [
+    1 => "Virement",  // Si es 1, muestra "Virement"
+];
+
+$mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devis["mode_payment"]]) ? $modePaymentOptions[$devis["mode_payment"]] : "Autre"; // "Autre" si no está presente o no tiene el valor 1
+
 // Preparar todas las variables para reemplazo
 $remplacements = [
     "{(NoDEVIS)}" => $devis["id"] ?? '',
@@ -41,7 +55,7 @@ $remplacements = [
     "{(PMR)}" => $devis["pmr"] ?? '',
     "{(TLF_RESP)}" => $devis["tlf_resp"] ?? '',
     "{(MAIL_RESP)}" => $devis["mail_resp"] ?? '',
-    "{(MODE)}" => $devis["mode"] ?? '',
+    "{(MODE)}" => $devis["mode_payment"] ?? '',
 ];
 
 // Generar datos QR

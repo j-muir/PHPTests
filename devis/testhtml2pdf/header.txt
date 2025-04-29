@@ -9,7 +9,7 @@
             <col width="120">
         </colgroup>
     <tr>
-        <td><img src="logoltf.png" width="200" /></td>
+        <td><img src="logoltf.png" width="100" /></td>
         <td>&nbsp;</td>
         <td style="text-align:center">
             <strong>ASSOCIATION LOISIRS ET TRADITIONS DE FRANCE</strong><br>
