@@ -37,7 +37,7 @@ table {
     <tr>
         <td class="col-vide">Ces tarifs sont maintenus pendant un mois à compter de la date d'émission du devis.</td>
         <td class="col-st"><b>Sous-total</b></td>
-        <td class="col-st-prix">0000,00 €</td>
+        <td class="col-st-prix">{(STOTALHT)} €</td>
     </tr>    
 </tbody>
 </table>
