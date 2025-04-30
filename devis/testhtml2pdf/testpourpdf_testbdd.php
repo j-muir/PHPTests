@@ -50,6 +50,8 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
     $stmtLignes->execute(['devis_id' => $numDevis]);
     $produits = $stmtLignes->fetchAll(PDO::FETCH_ASSOC);
 
+    $lignes = file_get_contents("Lignes.txt");
+
 // Generar tabla dinámica con datos recuperados de la query anterior.
     $tableRows = '';
     foreach ($produits as $index => $produit) {
@@ -110,7 +112,7 @@ $header     = remplacerVariables(file_get_contents("header.txt"), $remplacements
 $footer     = remplacerVariables(file_get_contents("footer.txt"), $remplacements);
 $objet      = remplacerVariables(file_get_contents("objet.txt"), $remplacements);
 $debuttable = remplacerVariables(file_get_contents("debuttable.txt"), $remplacements);
-$lignes     = file_get_contents("Lignes.txt");
+//$lignes     = file_get_contents("Lignes.txt");
 $fintable   = remplacerVariables(file_get_contents("fintable.txt"), $remplacements);
 $taux       = remplacerVariables(file_get_contents("taux.txt"), $remplacements);
 $reglement  = remplacerVariables(file_get_contents("reglement.txt"), $remplacements);
