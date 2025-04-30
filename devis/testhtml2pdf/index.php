@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Générer un devis en PDF</h2>
-    <form action="testpourpdf.php" method="POST">
+    <form action="testpourpdf_testbdd.php" method="POST">
         <label for="numDevis">Numéro de Devis :</label>
         <input type="text" id="numDevis" name="numDevis" required>
         <button type="submit">Générer PDF</button>
