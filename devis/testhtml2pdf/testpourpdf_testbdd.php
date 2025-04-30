@@ -42,7 +42,7 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
 
 // Recuperar productos y datos del presupuesto desde las tablas boutique (b) y devis_lignes (d). Se realiza un INNER JOIN entre devis_lignes y boutique para obtener la información detallada del producto a partir del código. Luego filtra las líneas del presupuesto para obtener solo las que pertenecen al presupuesto específico cuyo ID se pasa como parámetro (:devis_id).
     $stmtLignes = $pdo->prepare("
-    SELECT b.id_codeproduit, b.nom_produit, b.prix_ht, dl.quantite 
+    SELECT b.id_codeproduit, b.nom_produit, b.prix_ht, b.tva, dl.quantite 
     FROM devis_lignes dl
     JOIN boutique b ON dl.code_produit = b.id_codeproduit
     WHERE dl.devis_id = :devis_id
@@ -50,9 +50,18 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
     $stmtLignes->execute(['devis_id' => $numDevis]);
     $produits = $stmtLignes->fetchAll(PDO::FETCH_ASSOC);
 
+// Inicializar variables para calcular totales
+    $subtotalHT = 0;
+    $totalsTTC = [
+        5 => 0,
+        10 => 0,
+        20 => 0
+    ];
+
+// Declaración de variable para obtener los datos del html y poder generar las líneas.
     $lignes = file_get_contents("Lignes.txt");
 
-// Generar tabla dinámica con datos recuperados de la query anterior.
+// Generar tabla dinámica con datos recuperados de la query stmtLignes
     $tableRows = '';
     foreach ($produits as $index => $produit) {
         $classe = ($index % 2 === 0) ? "ligne-paire" : "ligne-impaire"; // Asigna una clase css diferente a cada linea, según si es par o impar.
@@ -62,7 +71,27 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
         $puht = number_format((float)$produit['prix_ht'], 2, ',', ' '); // float asegura que los datos sean pasados con décimales. Formatea el número al formato europeo, usando una coma para separar y no un punto.
         $mthtRaw = $produit['prix_ht'] * $qte; // Calculo del monto total sin impuestos.
         $mtht = number_format($mthtRaw, 2, ',', ' ');
-        $subtotalHT += $mthtRaw; 
+        $subtotalHT += $mthtRaw;
+        
+    // Calcular el total con impuestos según el tipo de IVA
+        $tauxTva = $produit['tva'];
+        switch ($tauxTva) {
+            case 5:
+                $mttc = $mthtRaw * 1.05;  // Aplica el 5% de IVA
+                $totalsTTC[5] += $mttc;
+                break;
+            case 10:
+                $mttc = $mthtRaw * 1.10;  // Aplica el 10% de IVA
+                $totalsTTC[10] += $mttc;
+                break;
+            case 20:
+                $mttc = $mthtRaw * 1.20;  // Aplica el 20% de IVA
+                $totalsTTC[20] += $mttc;
+                break;
+            default:
+                // Si no es ninguno de los tipos válidos de IVA, no hacer nada
+                break;
+        }
 
     $ligne = str_replace(
     ["{(CLASS)}", "{(CODE)}", "{(DESCRIPTION)}", "{(QTE)}", "{(PUHT)}", "{(MTHT)}"],
@@ -90,7 +119,10 @@ $remplacements = [
     "{(TLF_RESP)}" => $devis["tlf_resp"] ?? '',
     "{(MAIL_RESP)}" => $devis["mail_resp"] ?? '',
     "{(MODE)}" => $mode_payment,
-    "{(STOTALHT)}" => number_format($subtotalHT, 2, ',', ' ')
+    "{(STOTALHT)}" => number_format($subtotalHT, 2, ',', ' '),
+    "{(TX5HT)}" => number_format($totalsTTC[5], 2, ',', ' '),
+    "{(TX10HT)}" => number_format($totalsTTC[10], 2, ',', ' '),
+    "{(TX20HT)}" => number_format($totalsTTC[20], 2, ',', ' ')
 ];
 
 // Generar datos para QR
@@ -112,7 +144,6 @@ $header     = remplacerVariables(file_get_contents("header.txt"), $remplacements
 $footer     = remplacerVariables(file_get_contents("footer.txt"), $remplacements);
 $objet      = remplacerVariables(file_get_contents("objet.txt"), $remplacements);
 $debuttable = remplacerVariables(file_get_contents("debuttable.txt"), $remplacements);
-//$lignes     = file_get_contents("Lignes.txt");
 $fintable   = remplacerVariables(file_get_contents("fintable.txt"), $remplacements);
 $taux       = remplacerVariables(file_get_contents("taux.txt"), $remplacements);
 $reglement  = remplacerVariables(file_get_contents("reglement.txt"), $remplacements);

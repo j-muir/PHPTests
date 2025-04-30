@@ -2,7 +2,6 @@
 
 .col-accord {
     border-collapse: collapse;
-    border: 1px dashed gray;
     padding: 5px;
     text-align: center;
     font-size: 12px;
@@ -11,10 +10,6 @@
 
 .col-termes {
     border-collapse: collapse;
-    border-top: 1px white;
-    border-bottom: 1px dashed gray;
-    border-left: 1px dashed gray;
-    border-right: 1px dashed gray;
     padding: 5px;
     text-align: center;
     font-size: 12px;
