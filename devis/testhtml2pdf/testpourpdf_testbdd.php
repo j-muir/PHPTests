@@ -40,6 +40,37 @@ $modePaymentOptions = [
 
 $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devis["mode_payment"]]) ? $modePaymentOptions[$devis["mode_payment"]] : "Autre"; // "Autre" si no está presente o no tiene el valor 1
 
+// Recuperar productos y datos del presupuesto desde las tablas boutique (b) y devis_lignes (d). Se realiza un INNER JOIN entre devis_lignes y boutique para obtener la información detallada del producto a partir del código. Luego filtra las líneas del presupuesto para obtener solo las que pertenecen al presupuesto específico cuyo ID se pasa como parámetro (:devis_id).
+    $stmtLignes = $pdo->prepare("
+    SELECT b.id_codeproduit, b.nom_produit, b.prix_ht, dl.quantite 
+    FROM devis_lignes dl
+    JOIN boutique b ON dl.code_produit = b.id_codeproduit
+    WHERE dl.devis_id = :devis_id
+    ");
+    $stmtLignes->execute(['devis_id' => $numDevis]);
+    $produits = $stmtLignes->fetchAll(PDO::FETCH_ASSOC);
+
+// Generar tabla dinámica con datos recuperados de la query anterior.
+    $tableRows = '';
+    foreach ($produits as $index => $produit) {
+        $classe = ($index % 2 === 0) ? "ligne-paire" : "ligne-impaire"; // Asigna una clase css diferente a cada linea, según si es par o impar.
+        $code = htmlspecialchars($produit['id_codeproduit']);
+        $description = htmlspecialchars($produit['nom_produit']);
+        $qte = (int)$produit['quantite']; // int asegura que los datos sean pasados como un entero.
+        $puht = number_format((float)$produit['prix_ht'], 2, ',', ' '); // float asegura que los datos sean pasados con décimales. Formatea el número al formato europeo, usando una coma para separar y no un punto.
+        $mthtRaw = $produit['prix_ht'] * $qte; // Calculo del monto total sin impuestos.
+        $mtht = number_format($mthtRaw, 2, ',', ' ');
+        $subtotalHT += $mthtRaw; 
+
+    $ligne = str_replace(
+    ["{(CLASS)}", "{(CODE)}", "{(DESCRIPTION)}", "{(QTE)}", "{(PUHT)}", "{(MTHT)}"],
+    [$classe, $code, $description, $qte, $puht, $mtht],
+    $lignes
+    );
+
+    $tableRows .= $ligne; // Cada linea generada se añade a $tablerows. Esto se utilizará luego para la concatenación de contenido.
+}
+
 // Preparar todas las variables para reemplazo (placeholders)
 $remplacements = [
     "{(NoDEVIS)}" => $devis["id"] ?? '',
@@ -57,6 +88,7 @@ $remplacements = [
     "{(TLF_RESP)}" => $devis["tlf_resp"] ?? '',
     "{(MAIL_RESP)}" => $devis["mail_resp"] ?? '',
     "{(MODE)}" => $mode_payment,
+    "{(STOTALHT)}" => number_format($subtotalHT, 2, ',', ' ')
 ];
 
 // Generar datos para QR
@@ -85,40 +117,6 @@ $reglement  = remplacerVariables(file_get_contents("reglement.txt"), $remplaceme
 $bonaccord  = remplacerVariables(file_get_contents("bonaccord.txt"), $remplacements);
 $contenu    = remplacerVariables(file_get_contents("lesdevis.txt"), $remplacements);
 $contenu2   = remplacerVariables(file_get_contents("lesdevis2.txt"), $remplacements);
-
-// Recuperar productos y datos del presupuesto desde las tablas boutique (b) y devis_lignes (d). Se realiza un INNER JOIN entre devis_lignes y boutique para obtener la información detallada del producto a partir del código. Luego filtra las líneas del presupuesto para obtener solo las que pertenecen al presupuesto específico cuyo ID se pasa como parámetro (:devis_id).
-    $stmtLignes = $pdo->prepare("
-        SELECT b.id_codeproduit, b.nom_produit, b.prix_ht, dl.quantite 
-        FROM devis_lignes dl
-        JOIN boutique b ON dl.code_produit = b.id_codeproduit
-        WHERE dl.devis_id = :devis_id
-    ");
-    $stmtLignes->execute(['devis_id' => $numDevis]);
-    $produits = $stmtLignes->fetchAll(PDO::FETCH_ASSOC);
-
-// Generar tabla dinámica con datos recuperados de la query anterior.
-$tableRows = '';
-foreach ($produits as $index => $produit) {
-    $classe = ($index % 2 === 0) ? "ligne-paire" : "ligne-impaire"; // Asigna una clase css diferente a cada linea, según si es par o impar.
-    $code = htmlspecialchars($produit['id_codeproduit']);
-    $description = htmlspecialchars($produit['nom_produit']);
-    $qte = (int)$produit['quantite']; // int asegura que los datos sean pasados como un entero.
-    $puht = number_format((float)$produit['prix_ht'], 2, ',', ' '); // float asegura que los datos sean pasados con décimales. Formatea el número al formato europeo, usando una coma para separar y no un punto.
-    $mthtRaw = $produit['prix_ht'] * $qte; // Calculo del monto total sin impuestos.
-    $mtht = number_format($mthtRaw, 2, ',', ' ');
-    $subtotalHT += $mthtRaw; 
-
-    $ligne = str_replace(
-        ["{(CLASS)}", "{(CODE)}", "{(DESCRIPTION)}", "{(QTE)}", "{(PUHT)}", "{(MTHT)}"],
-        [$classe, $code, $description, $qte, $puht, $mtht],
-        $lignes
-    );
-
-    $tableRows .= $ligne; // Cada linea generada se añade a $tablerows. Esto se utilizará luego para la concatenación de contenido.
-}
-
-// Adición del subtotal sin impuestos, y reemplazo del placeholder por el valor real.
-$remplacements["{(STOTALHT)}"] = number_format($subtotalHT, 2, ',', ' ');
 
 // Concatenar contenido para PDF
 $page1 = $header . $contenu . $objet . $debuttable . $tableRows . $fintable . $taux . $reglement . $bonaccord . $footer;
