@@ -52,7 +52,14 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
 
 // Inicializar variables para calcular totales
     $subtotalHT = 0;
+    
     $totalsTTC = [
+        5 => 0,
+        10 => 0,
+        20 => 0
+    ];
+
+    $totalsTva = [
         5 => 0,
         10 => 0,
         20 => 0
@@ -87,6 +94,7 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
             case 20:
                 $mttc = $mthtRaw * 1.20;  // Aplica el 20% de IVA
                 $totalsTTC[20] += $mttc;
+                $totalsTva[20] += ($mttc - $mthtRaw);  // Calcula el IVA (diferencia entre TTC y HT) para el 20%
                 break;
             default:
                 // Si no es ninguno de los tipos válidos de IVA, no hacer nada
@@ -120,9 +128,13 @@ $remplacements = [
     "{(MAIL_RESP)}" => $devis["mail_resp"] ?? '',
     "{(MODE)}" => $mode_payment,
     "{(STOTALHT)}" => number_format($subtotalHT, 2, ',', ' '),
+    "{(TX20HT)}" => number_format($totalsTTC[20] - $totalsTva[20], 2, ',', ' '),
+    "{(TX10TVA)}" => number_format($totalsTTC[10] - $totalsTva[10], 2, ',', ' '),
+    "{(TX5TVA)}" => number_format($totalsTTC[5] - $totalsTva[5], 2, ',', ' '),
+    "{(TX20TVA)}" => number_format($totalsTva[20], 2, ',', ' '),
+    "{(TX10HT)}" => number_format($totalsTTC[10], 2, ',', ' '), 
     "{(TX5HT)}" => number_format($totalsTTC[5], 2, ',', ' '),
-    "{(TX10HT)}" => number_format($totalsTTC[10], 2, ',', ' '),
-    "{(TX20HT)}" => number_format($totalsTTC[20], 2, ',', ' ')
+    "{(STOTALTTC)}" => number_format(array_sum($totalsTTC), 2, ',', ' ') 
 ];
 
 // Generar datos para QR
