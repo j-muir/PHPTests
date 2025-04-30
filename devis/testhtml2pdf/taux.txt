@@ -37,7 +37,7 @@ table {
 
 .total-prix {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     border: 1px;
     border-style: solid;
     text-align: right;
