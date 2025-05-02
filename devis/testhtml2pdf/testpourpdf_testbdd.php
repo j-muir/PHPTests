@@ -180,6 +180,7 @@ $remplacements = [
     "{(TX10HT)}" => number_format($totalsTTC[10], 2, ',', ' '), 
     "{(TX5HT)}" => number_format($totalsTTC[5], 2, ',', ' '),
     "{(STOTALTTC)}" => number_format(array_sum($totalsTTC), 2, ',', ' ') ,
+    "{(TAUX_ROWS)}" => $tauxRows,
     "{(ACOMPTE)}" => number_format($acompte, 2, ',', ' '),
     "{(RESTEPAYER)}" => number_format($reste, 2, ',', ' ')
 ];
