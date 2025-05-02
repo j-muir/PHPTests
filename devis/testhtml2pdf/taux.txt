@@ -54,13 +54,6 @@ table {
     text-align: center;
 }
 
-.total-bar {
-    border-top: 1px white;
-    border-bottom: 1px black;
-    border-left: 1px white;
-    border-right: 1px white;
-}
-
 
 </style>
 
