@@ -29,8 +29,7 @@ table {
 .total {
     font-weight: bold;
     font-size: 12px;
-    border: 1px;
-    border-style: solid;
+    border: 1px solid black;
     text-align: center;
     padding: 5px;
 }
@@ -38,8 +37,7 @@ table {
 .total-prix {
     font-weight: bold;
     font-size: 14px;
-    border: 1px;
-    border-style: solid;
+    border: 1px solid black;
     text-align: right;
     padding-right: 5px;
 }
