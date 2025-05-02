@@ -110,6 +110,11 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
     $tableRows .= $ligne; // Cada linea generada se añade a $tablerows. Esto se utilizará luego para la concatenación de contenido.
 }
 
+// Calcular acompte (40% del total TTC) y reste à payer
+    $stotalTTC = array_sum($totalsTTC);
+    $acompte = $stotalTTC * 0.40;
+    $reste = $stotalTTC - $acompte;
+
 // Preparar todas las variables para reemplazo (placeholders)
 $remplacements = [
     "{(NoDEVIS)}" => $devis["id"] ?? '',
@@ -134,7 +139,9 @@ $remplacements = [
     "{(TX20TVA)}" => number_format($totalsTva[20], 2, ',', ' '),
     "{(TX10HT)}" => number_format($totalsTTC[10], 2, ',', ' '), 
     "{(TX5HT)}" => number_format($totalsTTC[5], 2, ',', ' '),
-    "{(STOTALTTC)}" => number_format(array_sum($totalsTTC), 2, ',', ' ') 
+    "{(STOTALTTC)}" => number_format(array_sum($totalsTTC), 2, ',', ' ') ,
+    "{(ACOMPTE)}" => number_format($acompte, 2, ',', ' '),
+    "{(RESTEPAYER)}" => number_format($reste, 2, ',', ' ')
 ];
 
 // Generar datos para QR
