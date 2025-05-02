@@ -74,6 +74,14 @@ table {
                    <col width="110">
     </colgroup>
  <tbody>
+    <tr>
+        <td class="taux-titres">Taux TVA</td>
+        <td class="taux-titres">Total HT</td>
+        <td class="taux-titres">Total TVA</td>
+        <td class="col-empty">&nbsp;</td>
+        <td class="total">Total TTC</td>
+        <td class="total-prix">{(STOTALTTC)} €</td>
+    </tr>
     {(TAUX_ROWS)}
     <tr>
         <td>&nbsp;</td>
