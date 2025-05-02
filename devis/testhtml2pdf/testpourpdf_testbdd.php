@@ -84,20 +84,19 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
         $tauxTva = $produit['tva'];
         switch ($tauxTva) {
             case 5:
-                $mttc = $mthtRaw * 1.05;  // Aplica el 5% de IVA
+                $mttc = $mthtRaw * 1.05;
                 $totalsTTC[5] += $mttc;
+                $totalsTva[5] += $mttc - $mthtRaw;
                 break;
             case 10:
-                $mttc = $mthtRaw * 1.10;  // Aplica el 10% de IVA
+                $mttc = $mthtRaw * 1.10;
                 $totalsTTC[10] += $mttc;
+                $totalsTva[10] += $mttc - $mthtRaw;
                 break;
             case 20:
-                $mttc = $mthtRaw * 1.20;  // Aplica el 20% de IVA
+                $mttc = $mthtRaw * 1.20;
                 $totalsTTC[20] += $mttc;
-                $totalsTva[20] += ($mttc - $mthtRaw);  // Calcula el IVA (diferencia entre TTC y HT) para el 20%
-                break;
-            default:
-                // Si no es ninguno de los tipos válidos de IVA, no hacer nada
+                $totalsTva[20] += $mttc - $mthtRaw;
                 break;
         }
 
