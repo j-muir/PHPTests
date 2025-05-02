@@ -115,6 +115,46 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
     $acompte = $stotalTTC * 0.40;
     $reste = $stotalTTC - $acompte;
 
+// Construir dinámicamente las filas de tasas
+    $tauxRows = '';
+
+    if ($totalsTTC[20] > 0) {
+        $tauxRows .= '
+        <tr>
+            <td class="taux">20,00%</td>
+            <td class="taux-prix">' . number_format($totalsTTC[20] - $totalsTva[20], 2, ',', ' ') . ' €</td>
+            <td class="taux-prix">' . number_format($totalsTva[20], 2, ',', ' ') . ' €</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>';
+    }
+
+    if ($totalsTTC[10] > 0) {
+        $tauxRows .= '
+        <tr>
+            <td class="taux">10,00%</td>
+            <td class="taux-prix">' . number_format($totalsTTC[10] - $totalsTva[10], 2, ',', ' ') . ' €</td>
+            <td class="taux-prix">' . number_format($totalsTva[10], 2, ',', ' ') . ' €</td>
+            <td class="total-bar">&nbsp;</td>
+            <td class="total-bar">&nbsp;</td>
+            <td class="total-bar">&nbsp;</td>
+        </tr>';
+    }
+
+    if ($totalsTTC[5] > 0) {
+        $tauxRows .= '
+        <tr>
+            <td class="taux">5,00%</td>
+            <td class="taux-prix">' . number_format($totalsTTC[5] - $totalsTva[5], 2, ',', ' ') . ' €</td>
+            <td class="taux-prix">' . number_format($totalsTva[5], 2, ',', ' ') . ' €</td>
+            <td class="col-empty">&nbsp;</td>
+            <td class="col-empty">&nbsp;</td>
+            <td class="col-empty">&nbsp;</td>
+        </tr>';
+    }
+
+
 // Preparar todas las variables para reemplazo (placeholders)
 $remplacements = [
     "{(NoDEVIS)}" => $devis["id"] ?? '',
