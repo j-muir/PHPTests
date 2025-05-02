@@ -87,7 +87,7 @@ table {
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td class="col-empty">&nbsp;</td>
         <td class="total">40% Acompte</td>
         <td class="total-prix">{(ACOMPTE)} €</td>
     </tr>
@@ -95,7 +95,7 @@ table {
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td class="col-empty">&nbsp;</td>
         <td class="total">Reste à Payer</td>
         <td class="total-prix">{(RESTEPAYER)} €</td>
     </tr>  

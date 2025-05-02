@@ -147,9 +147,9 @@ $mode_payment = isset($devis["mode_payment"]) && isset($modePaymentOptions[$devi
             <td class="taux">5,00%</td>
             <td class="taux-prix">' . number_format($totalsTTC[5] - $totalsTva[5], 2, ',', ' ') . ' €</td>
             <td class="taux-prix">' . number_format($totalsTva[5], 2, ',', ' ') . ' €</td>
-            <td class="col-empty">&nbsp;</td>
-            <td class="col-empty">&nbsp;</td>
-            <td class="col-empty">&nbsp;</td>
+            <td class="total-bar">&nbsp;</td>
+            <td class="total-bar">&nbsp;</td>
+            <td class="total-bar">&nbsp;</td>
         </tr>';
     }
 
