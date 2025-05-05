@@ -34,7 +34,7 @@
         //Obtener producto individual
         public function leer_individual(){
             //Crear query
-            $query = 'SELECT c.nombre as nombre_categoria, p.id, p.categoria_id, p.titulo, p.texto, p.fecha_creacion FROM ' . $this->table . 'LEFT JOIN categorias c ON p.categoria_id = :c.id WHERE p.id = ? LIMIT 0.1';
+            $query = 'SELECT c.nombre as nombre_categoria, p.id, p.categoria_id, p.titulo, p.texto, p.fecha_creacion FROM ' . $this->table . ' p LEFT JOIN categorias c ON p.categoria_id = c.id WHERE p.id = ? LIMIT 0,1';
 
             //Preparar la sentencia
             $stmt = $this->conn->prepare($query);
@@ -52,7 +52,7 @@
             $this->titulo = $row['titulo'];
             $this->texto = $row['texto'];
             $this->categoria_id = $row['categoria_id'];
-            $this->categoria_nombre = $row['categoria_nombre'];          
+            $this->nombre_categoria = $row['nombre_categoria'];
         }
 
         //Crear nuevo producto
