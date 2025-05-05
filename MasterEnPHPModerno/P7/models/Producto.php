@@ -7,7 +7,7 @@
         /* Propiedades */
         public $id;
         public $categoria_id;
-        public $categoria_nombre;
+        public $nombre_categoria;
         public $titulo;
         public $texto;
         public $fecha_creacion;
