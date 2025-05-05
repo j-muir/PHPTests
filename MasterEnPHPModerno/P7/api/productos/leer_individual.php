@@ -18,17 +18,18 @@
     $producto->id = isset($_GET['id']) ? $_GET['id'] : die();
 
     //Get producto
-    $producto->leer_individual();
+    if ($producto->leer_individual()) {
+        $producto_arr = array(
+            'id' => $producto->id,
+            'titulo' => $producto->titulo,
+            'texto' => $producto->texto,
+            'categoria_id' => $producto->categoria_id,
+            'nombre_categoria' => $producto->nombre_categoria,
+            'fecha_creacion' => $producto->fecha_creacion
+        );
 
-    $producto_arr = array(
-        'id' => $producto->id,
-        'titulo' => $titulo,
-        'texto' => $texto,
-        'categoria_id' => $categoria_id,
-        'nombre_categoria' => $nombre_categoria 
-    );
-
-    //Crear json
-        print_r(json_encode($producto_arr));
-
+        echo json_encode($producto_arr);
+    } else {
+        echo json_encode(['message' => 'Producto no encontrado']);
+    }
     ?>
