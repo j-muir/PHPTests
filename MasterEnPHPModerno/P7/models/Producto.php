@@ -87,7 +87,7 @@
         //Actualizar un registro existente
         public function actualizar(){
             //Crear query
-            $query = 'UPDATE ' . $this->table . 'set titulo = :titulo, texto = :texto, categoria_id = :categoria_id WHERE id = :id';           
+            $query = 'UPDATE ' . $this->table . ' set titulo = :titulo, texto = :texto, categoria_id = :categoria_id WHERE id = :id';           
 
             //Preparar la sentencia
             $stmt = $this->conn->prepare($query);
