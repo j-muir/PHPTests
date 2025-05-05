@@ -22,8 +22,7 @@
         //Obtener productos
         public function leer(){
             //Crear query       
-            $query = 'SELECT c.nombre as nombre_categoria, p.id, p.categoria_id, p.titulo, p.texto, p.fecha_creacion FROM ' . $this->table . 'LEFT JOIN categorias c ON p.categoria_id = :c.id ORDER BY p.fecha_creacion DESC';
-
+            $query = 'SELECT c.nombre as nombre_categoria, p.id, p.categoria_id, p.titulo, p.texto, p.fecha_creacion FROM ' . $this->table . ' p LEFT JOIN categorias c ON p.categoria_id = c.id ORDER BY p.fecha_creacion DESC';
             //Preparar la sentencia
             $stmt = $this->conn->prepare($query);
 
